@@ -8,6 +8,7 @@ import {
 } from '@keystone-next/keystone/session';
 import { User } from './schemas/User';
 import { Product } from './schemas/Product';
+import { insertSeedData } from './seed-data';
 
 const databaseURL =
   process.env.DATABASE_URL || 'mangodb://localhost/keystone-sick-fits-tutorial';
@@ -39,6 +40,12 @@ export default withAuth(
     db: {
       adapter: 'mongoose',
       url: databaseURL,
+      async onConnect(keystone) {
+        console.log('connected to the db');
+        if (process.argv.includes('--seed-data')) {
+          await insertSeedData(keystone);
+        }
+      },
       // todo: add data seeding here
     },
 
