@@ -1,4 +1,3 @@
-import { ProductImage } from './schemas/ProductImage';
 import { createAuth } from '@keystone-next/auth';
 import { config, createSchema } from '@keystone-next/keystone/schema';
 import 'dotenv/config';
@@ -6,6 +5,7 @@ import {
   withItemData,
   statelessSessions,
 } from '@keystone-next/keystone/session';
+import { ProductImage } from './schemas/ProductImage';
 import { User } from './schemas/User';
 import { Product } from './schemas/Product';
 import { insertSeedData } from './seed-data';

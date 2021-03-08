@@ -1,9 +1,18 @@
-import { useState } from 'react';
+import { object } from 'prop-types';
+import { useState, useEffect } from 'react';
 
 export default function useForm(initial = {}) {
   // create state obj for out inputs
   const [inputs, setInputs] = useState(initial);
+  const initialValues = Object.values(initial).join('');
+  useEffect(() => {
+    // this funciton runs when the things we are watching change
+    setInputs(initial);
 
+    // gets triggered when the [initialValues] changes
+  }, [initialValues]);
+
+  // dummy data example
   // {
   //     name: 'sar',
   //     description: 'cotton shoes',

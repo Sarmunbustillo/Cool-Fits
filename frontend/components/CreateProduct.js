@@ -72,7 +72,7 @@ export default function CreateProduct() {
             onChange={handleChange}
           />
         </label>
-        <label htmlFor="image">
+        <label htmlFor="name">
           Name
           <input
             type="text"
