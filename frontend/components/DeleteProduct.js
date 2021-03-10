@@ -10,7 +10,8 @@ const DELETE_PRODUCT_MUTATION = gql`
     }
   }
 `;
-
+// we delete the item from the data base but it is still cached in the frontend
+// so the user needs to reload for it to disspear. The fucntion updates the fontend
 function update(cache, payload) {
   console.log(payload);
   console.log('running the update func after ');
