@@ -23,7 +23,7 @@ export const SIGNIN_MUTATION = gql`
   }
 `;
 
-export default function Signin() {
+export default function SignIn() {
   const { inputs, handleChange, resetForm } = useForm({
     email: '',
     password: '',
