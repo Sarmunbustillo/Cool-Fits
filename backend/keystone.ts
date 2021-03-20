@@ -9,6 +9,7 @@ import { ProductImage } from './schemas/ProductImage';
 import { User } from './schemas/User';
 import { Product } from './schemas/Product';
 import { insertSeedData } from './seed-data';
+import { sendPassWordResetEmail } from './lib/mail';
 
 const databaseURL =
   process.env.DATABASE_URL || 'mangodb://localhost/keystone-sick-fits-tutorial';
@@ -25,6 +26,13 @@ const { withAuth } = createAuth({
   initFirstItem: {
     fields: ['name', 'email', 'password'],
     // todo add in initial roles
+  },
+  passwordResetLink: {
+    async sendToken(args) {
+      // send  email
+
+      await sendPassWordResetEmail(args.token, args.identity);
+    },
   },
 });
 
