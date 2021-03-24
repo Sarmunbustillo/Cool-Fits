@@ -46,7 +46,7 @@ export default function Reset({ token }) {
   return (
     <Form method="POST" onSubmit={handleSubmit}>
       <h2>Reset Your Password</h2>
-      <DisplayError error={error || successfulError} />
+      <DisplayError error={error || successfulError} /> 
       <fieldset>
         {data?.redeemUserPasswordResetToken === null && <p>Success!</p>}
 
