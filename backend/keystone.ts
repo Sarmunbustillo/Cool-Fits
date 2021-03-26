@@ -1,4 +1,3 @@
-import { CartItem } from './schemas/CartItem';
 import { createAuth } from '@keystone-next/auth';
 import { config, createSchema } from '@keystone-next/keystone/schema';
 import 'dotenv/config';
@@ -6,6 +5,8 @@ import {
   withItemData,
   statelessSessions,
 } from '@keystone-next/keystone/session';
+import { extendGraphqlSchema } from './mutations/index';
+import { CartItem } from './schemas/CartItem';
 import { ProductImage } from './schemas/ProductImage';
 import { User } from './schemas/User';
 import { Product } from './schemas/Product';
@@ -65,7 +66,7 @@ export default withAuth(
       ProductImage,
       CartItem,
     }),
-
+    extendGraphqlSchema,
     ui: {
       // show the ui only for the people who pass this test
       isAccessAllowed: ({ session }) => {
