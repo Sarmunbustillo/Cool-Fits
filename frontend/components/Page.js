@@ -4,13 +4,15 @@ import Header from './Header';
 
 const GlobalStyles = createGlobalStyle`
 
-@font-face {
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+/* @font-face {
   font-family: 'radnika_next';
   src: url('/static/radnikanext-medium-webfont.woff2');
   format:('woff2');
   font-weight: normal;
   font-style: normal;
-}
+} */
   html {
     --red: #d61d1d;
     --black: #2d2d2d;
@@ -31,6 +33,7 @@ const GlobalStyles = createGlobalStyle`
 
   body {
     font-family: 'radnika_next', --apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'Poppins', sans-serif;
     padding: 0;
     margin: 0;
     font-size: 1.5rem;
@@ -49,6 +52,7 @@ const GlobalStyles = createGlobalStyle`
 
   button {
     font-family: 'radnika_next', --apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'Poppins', sans-serif;
   }
 
   

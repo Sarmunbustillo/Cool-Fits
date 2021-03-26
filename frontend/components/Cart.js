@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 import CartStyles from './styles/CartStyles';
 import Supreme from './styles/Supreme';
+import CloseButton from './styles/CloseButton';
 import formatMoney from '../lib/formatMoney';
 import { useUser } from './User';
 import calcTotalPrice from '../lib/calcTotalPrice';
+import { useCart } from '../lib/cartState';
+import DeleteCartItem from './DeleteCartItem';
 
 const CartItemStyles = styled.li`
   padding: 1rem 0;
@@ -20,10 +23,21 @@ const CartItemStyles = styled.li`
   }
 `;
 
+const CartItemsListStyles = styled.ul`
+  /* Hide scrollbar for IE, Edge and Firefox */
+
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
 function CartItem({ cartItem }) {
   const { product } = cartItem;
+
   if (!product) return null;
-  console.log(product);
   return (
     <CartItemStyles>
       <img
@@ -37,29 +51,36 @@ function CartItem({ cartItem }) {
         <p>
           {formatMoney(product.price * cartItem.quantity)} (
           <em>
-            <small>{cartItem.quantity} items</small>
+            <small>&times;{cartItem.quantity}</small>
           </em>
           )
         </p>
       </div>
+      <DeleteCartItem id={cartItem.id} />
     </CartItemStyles>
   );
 }
 
 export default function Cart() {
   const me = useUser();
+  const { cartOpen, closeCart } = useCart();
+
   if (!me) return null;
-  console.log(me);
+
   return (
-    <CartStyles open>
+    <CartStyles open={cartOpen}>
       <header>
         <Supreme>{me.name}'s Cart</Supreme>
+        <CloseButton type="button" onClick={closeCart}>
+          &times;
+        </CloseButton>
       </header>
-      <ul>
+
+      <CartItemsListStyles>
         {me.cart.map((cartItem) => (
           <CartItem key={cartItem.id} cartItem={cartItem} />
         ))}
-      </ul>
+      </CartItemsListStyles>
       <footer>
         <p>{formatMoney(calcTotalPrice(me.cart))}</p>
       </footer>
