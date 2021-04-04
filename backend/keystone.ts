@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+import { Role } from './schemas/Role';
 import { createAuth } from '@keystone-next/auth';
 import { config, createSchema } from '@keystone-next/keystone/schema';
 import 'dotenv/config';
@@ -14,6 +16,7 @@ import { User } from './schemas/User';
 import { Product } from './schemas/Product';
 import { insertSeedData } from './seed-data';
 import { sendPassWordResetEmail } from './lib/mail';
+import { permissionsList } from './schemas/fileds';
 
 const databaseURL =
   process.env.DATABASE_URL || 'mangodb://localhost/keystone-sick-fits-tutorial';
@@ -69,6 +72,7 @@ export default withAuth(
       CartItem,
       OrderItem,
       Order,
+      Role,
     }),
     extendGraphqlSchema,
     ui: {
@@ -82,7 +86,8 @@ export default withAuth(
     // todo add session values here
     session: withItemData(statelessSessions(sessionConfig), {
       // Graphql query
-      User: 'id name email',
+      // permissionsList is a helper func that we wrote to avoid the extra typing
+      User: `id name email role { ${permissionsList.join(' ')} }`,
     }),
   })
 );
