@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
@@ -17,7 +18,6 @@ const generatedPermissions = Object.fromEntries(
     },
   ])
 );
-
 // Permissions check if someone meets a criteria - yes or no.
 export const permissions = {
   ...generatedPermissions,
